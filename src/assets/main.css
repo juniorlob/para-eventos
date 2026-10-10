@@ -25,6 +25,13 @@ body {
   padding: 0;
 }
 
+p {
+  font-size: var(--font-medium);
+  line-height: 1.2;
+  color: #333;
+  margin: 0 0 1rem 0;
+}
+
 
 @media (max-width: 576px) {
   .container {
