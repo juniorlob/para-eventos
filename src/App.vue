@@ -1,10 +1,14 @@
-<script setup></script>
+<script setup>
+import Layout from "@/components/Layout.vue"
+</script>
 
 <template>
-  <div class="container">
-    <h1>Welcome to My App</h1>
-    <p>This is a simple Vue app.</p>
-  </div>
+  <Layout>
+    <div class="container">
+      <h1>Welcome to Pará Eventos</h1>
+      <p>A sua agenda de cultura e lazer na Região Metropolitana</p>
+    </div>
+  </Layout>
 </template>
 
 <style scoped>
