@@ -4,11 +4,11 @@ import Footer from "./Footer.vue";
 </script>
 <template>
   <div class="layout">
-  <Header />
-  <main>
-    <slot />
-  </main>
-  <Footer />
+    <Header />
+    <main class="main">
+      <slot />
+    </main>
+    <Footer />
   </div>
 </template>
 
@@ -18,5 +18,10 @@ import Footer from "./Footer.vue";
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+}
+
+.main {
+  flex: 1;
+  padding: 1rem 0;
 }
 </style>

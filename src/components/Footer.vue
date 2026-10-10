@@ -55,8 +55,16 @@
 
 <style scoped>
 .footer {
-  border-top: 1px solid #ccc;
+  border-top: 1px solid #e0e0e0;
   margin-top: auto;
+  background-color: #eeeeee;
+}
+
+.footer-nav {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: space-between;
+  padding: 2rem 0;
 }
 
 .footer-nav p {
@@ -66,12 +74,6 @@
   margin-bottom: 0.5rem;
 }
 
-.footer-nav {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  justify-content: space-between;
-  padding: 1rem 0;
-}
 
 @media (max-width: 576px) {
   .footer-nav {
@@ -108,7 +110,7 @@
 }
 
 .social-media {
-  border-top: 1px solid #ccc
+  border-top: 1px solid #e0e0e0;
 }
 
 .social-media ul {

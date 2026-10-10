@@ -5,7 +5,7 @@
     <div class="container">
       <nav class="navbar">
         <img src="@/assets/logo.png" alt="Logo" class="logo" />
-        <p>A sua agenda de cultura e lazer na Região Metropolitana</p>
+        <p class="header-title">A sua agenda de cultura e lazer na Região Metropolitana</p>
       </nav>
     </div>
   </header>
@@ -26,6 +26,15 @@
 .header {
   background-color: #cbe6ff;
   padding: .5rem 0;
+  border-bottom: 1px solid #c4e2ff;
+}
+
+.header-title {
+  font-size: var(--font-medium);
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-left: .5rem;
+  margin-bottom: 0;
 }
 
 .logo {
