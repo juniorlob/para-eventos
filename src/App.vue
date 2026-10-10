@@ -1,8 +1,9 @@
 <script setup>
-import { ref } from "vue"
+import { computed, ref } from "vue"
 import Layout from "@/components/Layout.vue"
 import EventCard from "@/components/EventCard.vue"
 import EventCarousel from "@/components/EventCarousel.vue"
+import SearchBar from "@/components/SearchBar.vue"
 import slideMangueirao from "@/assets/banners/festival-no-mangueirao.png"
 import slideTeatro from "@/assets/banners/show-no-teatro.png"
 import slideCirio from "@/assets/banners/cirio-de-nazare.png"
@@ -77,6 +78,20 @@ const initialEvents = [
 
 const events = ref(initialEvents)
 
+const searchText = ref("")
+
+function handleSearch(value) {
+  searchText.value = value
+}
+
+const filteredEvents = computed(() => {
+  const query = searchText.value.trim().toLowerCase()
+  if (query === "") return events.value
+  return events.value.filter((event) =>
+    event.title.toLowerCase().includes(query),
+  )
+})
+
 const slides = ref([
   { src: slideMangueirao, title: "Festival no Mangueirão" },
   { src: slideTeatro, title: "Show no Teatro" },
@@ -89,16 +104,21 @@ const slides = ref([
 
 <template>
   <Layout>
+    <div class="container welcome">
+      <h1>A sua agenda de cultura e lazer na Região Metropolitana</h1>
+    </div>
 
     <div class="container">
       <EventCarousel :slides="slides" />
     </div>
-    <div class="container header-title__container">
-      <h1>Bem vindo a Pará Eventos</h1>
-      <p>A sua agenda de cultura e lazer na Região Metropolitana</p>
+    <div class="container">
+      <SearchBar :model-value="searchText" :on-search="handleSearch" />
     </div>
     <section class="events container">
-      <EventCard v-for="event in events" :key="event.id" :event="event" />
+      <EventCard v-for="event in filteredEvents" :key="event.id" :event="event" />
+      <div v-if="filteredEvents.length === 0" class="no-events">
+        <p>Nenhum evento encontrado.</p>
+      </div>
     </section>
   </Layout>
 </template>
@@ -109,15 +129,17 @@ h1 {
   margin-bottom: 0;
 }
 
-.header-title__container {
-  text-align: center;
-  margin-bottom: 24px;
-}
-
 .events {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(5, minmax(280px, 1fr));
   gap: 16px;
   margin-top: 24px;
+}
+
+@media (min-width:) {}
+
+.welcome {
+  margin-bottom: 24px;
+  text-align: center;
 }
 </style>

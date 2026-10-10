@@ -5,7 +5,7 @@
     <div class="container">
       <nav class="navbar">
         <img src="@/assets/logo.png" alt="Logo" class="logo" />
-        <p class="header-title">A sua agenda de cultura e lazer na Região Metropolitana</p>
+        <p class="header-title">Bem vindo a Pará Eventos</p>
       </nav>
     </div>
   </header>
@@ -30,7 +30,7 @@
 }
 
 .header-title {
-  font-size: var(--font-medium);
+  font-size: var(--font-3xlarge);
   font-weight: 600;
   color: var(--primary-color);
   margin-left: .5rem;

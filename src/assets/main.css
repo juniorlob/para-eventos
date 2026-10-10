@@ -6,6 +6,9 @@
   --font-small: 12px;
   --font-medium: 16px;
   --font-large: 20px;
+  --font-xlarge: 24px;
+  --font-2xlarge: 28px;
+  --font-3xlarge: 32px;
   --breakpoint-xl: 1200px;
   --breakpoint-lg: 992px;
   --breakpoint-md: 768px;
