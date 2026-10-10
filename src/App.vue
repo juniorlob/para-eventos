@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue"
 import Layout from "@/components/Layout.vue"
+import EventCard from "@/components/EventCard.vue"
 
 
 const initialEvents = [
@@ -8,7 +9,7 @@ const initialEvents = [
     id: "show-mangueirao-2025",
     title: "Show Nacional - Verão Amazônico 2025",
     category: "SHOW",
-    date: "2025-12-15",
+    date: "2026-12-15",
     time: "20:00",
     location: "Estádio Olímpico do Pará - Mangueirão, Belém-PA",
     imageUrl: "https://placehold.co/800x450?text=Verao+Amazonico+2025",
@@ -19,7 +20,7 @@ const initialEvents = [
     id: "teatro-amazonia-em-cena",
     title: 'Espetáculo "Amazônia em Cena"',
     category: "TEATRO",
-    date: "2025-12-08",
+    date: "2026-12-08",
     time: "19:30",
     location: "Theatro da Paz - Praça da República, Belém-PA",
     imageUrl: "https://placehold.co/800x450?text=Amazonia+em+Cena",
@@ -30,7 +31,7 @@ const initialEvents = [
     id: "festival-sabores-do-para",
     title: "Festival Gastronômico Sabores do Pará",
     category: "CULINÁRIO",
-    date: "2025-12-05",
+    date: "2026-12-05",
     time: "17:00",
     location: "Hangar Centro de Convenções - Belém-PA",
     imageUrl: "https://placehold.co/800x450?text=Sabores+do+Para",
@@ -41,7 +42,7 @@ const initialEvents = [
     id: "exposicao-raizes-da-amazonia",
     title: 'Exposição "Raízes da Amazônia"',
     category: "MUSEU",
-    date: "2025-12-18",
+    date: "2026-12-18",
     time: "10:00",
     location: "Museu Paraense Emílio Goeldi - Av. Magalhães Barata, 376, São Brás",
     imageUrl: "https://placehold.co/800x450?text=Raizes+da+Amazonia",
@@ -52,7 +53,7 @@ const initialEvents = [
     id: "palestra-cultura-paraense",
     title: "Palestra: Cultura Paraense - História e Tradições",
     category: "PALESTRAS",
-    date: "2025-12-10",
+    date: "2026-12-10",
     time: "14:00",
     location: "Museu do Estado do Pará - MEP, Belém-PA",
     imageUrl: "https://placehold.co/800x450?text=Cultura+Paraense",
@@ -71,6 +72,9 @@ const events = ref(initialEvents)
       <h1>Welcome to Pará Eventos</h1>
       <p>A sua agenda de cultura e lazer na Região Metropolitana</p>
     </div>
+    <section class="events container">
+      <EventCard v-for="event in events" :key="event.id" :event="event" />
+    </section>
   </Layout>
 </template>
 
@@ -78,5 +82,12 @@ const events = ref(initialEvents)
 h1 {
   color: var(--primary-color);
   font-size: var(--font-large);
+}
+
+.events {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
 }
 </style>
