@@ -44,6 +44,7 @@ const props = defineProps({
   border-radius: 8px;
   overflow: hidden;
   background: #fff;
+  max-width: 400px;
 }
 
 .event-card__cover {

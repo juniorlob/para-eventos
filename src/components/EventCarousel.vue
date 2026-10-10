@@ -1,6 +1,4 @@
 <script setup>
-// Carrossel simples: faixa com rolagem lateral nativa.
-// Sem bibliotecas externas, só props, v-for e CSS.
 const props = defineProps({
   slides: {
     type: Array,
