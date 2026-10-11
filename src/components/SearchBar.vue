@@ -25,15 +25,16 @@ function onInput(event) {
 
 <style scoped>
 .search-bar {
-  padding: 16px 0 0;
+  width: 100%;
 }
 
 .search-bar__input {
-  width: 100%;
+  width: stretch;
   font-size: var(--font-medium);
   padding: 10px 14px;
   border: 1px solid #ccc;
   border-radius: 8px;
+
 }
 
 .search-bar__input:focus {
