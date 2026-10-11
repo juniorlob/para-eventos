@@ -16,12 +16,19 @@ import festivalSabores from "@/assets/eventos/festival-sabores-do-para.jpeg"
 import exposicaoRaizes from "@/assets/eventos/exposicao-raizes-da-amazonia.jpeg"
 import palestraCultura from "@/assets/eventos/palestra-cultura-paraense.png"
 
+const EVENTS_CATEGORY = {
+  SHOW: "show",
+  TEATRO: "teatro",
+  CULINARIO: "culinario",
+  MUSEU: "museu",
+  PALESTRAS: "palestras",
+}
 
 const initialEvents = [
   {
     id: "show-mangueirao-2025",
     title: "Show Nacional - Verão Amazônico 2025",
-    category: "SHOW",
+    category: EVENTS_CATEGORY.SHOW,
     date: "2026-12-15",
     time: "20:00",
     location: "Estádio Olímpico do Pará - Mangueirão, Belém-PA",
@@ -32,7 +39,7 @@ const initialEvents = [
   {
     id: "teatro-amazonia-em-cena",
     title: 'Espetáculo "Amazônia em Cena"',
-    category: "TEATRO",
+    category: EVENTS_CATEGORY.TEATRO,
     date: "2026-12-08",
     time: "19:30",
     location: "Theatro da Paz - Praça da República, Belém-PA",
@@ -43,7 +50,7 @@ const initialEvents = [
   {
     id: "festival-sabores-do-para",
     title: "Festival Gastronômico Sabores do Pará",
-    category: "CULINÁRIO",
+    category: EVENTS_CATEGORY.CULINARIO,
     date: "2026-12-05",
     time: "17:00",
     location: "Hangar Centro de Convenções - Belém-PA",
@@ -54,7 +61,7 @@ const initialEvents = [
   {
     id: "exposicao-raizes-da-amazonia",
     title: 'Exposição "Raízes da Amazônia"',
-    category: "MUSEU",
+    category: EVENTS_CATEGORY.MUSEU,
     date: "2026-12-18",
     time: "10:00",
     location: "Museu Paraense Emílio Goeldi - Av. Magalhães Barata, 376, São Brás",
@@ -65,7 +72,7 @@ const initialEvents = [
   {
     id: "palestra-cultura-paraense",
     title: "Palestra: Cultura Paraense - História e Tradições",
-    category: "PALESTRAS",
+    category: EVENTS_CATEGORY.PALESTRAS,
     date: "2026-12-10",
     time: "14:00",
     location: "Museu do Estado do Pará - MEP, Belém-PA",
@@ -74,7 +81,6 @@ const initialEvents = [
       "Uma jornada pela história, cultura, tradições e manifestações artísticas do Pará. Palestrante especialista em folclore amazônico aborda Círio de Nazaré, Carimbó, Bumba Meu Boi e artes visuais paraenses. Vagas limitadas, inscrições gratuitas.",
   },
 ]
-
 
 const events = ref(initialEvents)
 
@@ -86,11 +92,30 @@ function handleSearch(value) {
 
 const filteredEvents = computed(() => {
   const query = searchText.value.trim().toLowerCase()
-  if (query === "") return events.value
-  return events.value.filter((event) =>
-    event.title.toLowerCase().includes(query),
-  )
+  return events.value.filter((event) => {
+    const matchesQuery =
+      query === "" || event.title.toLowerCase().includes(query)
+    const matchesFavorites =
+      !showFavoritesOnly.value || favoriteIds.value.includes(event.id)
+    return matchesQuery && matchesFavorites
+  })
 })
+
+const favoriteIds = ref([])
+const showFavoritesOnly = ref(false)
+
+function toggleFavorite(id) {
+  const index = favoriteIds.value.indexOf(id)
+  if (index === -1) {
+    favoriteIds.value.push(id)
+  } else {
+    favoriteIds.value.splice(index, 1)
+  }
+}
+
+function toggleFavoritesView() {
+  showFavoritesOnly.value = !showFavoritesOnly.value
+}
 
 const slides = ref([
   { src: slideMangueirao, title: "Festival no Mangueirão" },
@@ -111,11 +136,17 @@ const slides = ref([
     <div class="container">
       <EventCarousel :slides="slides" />
     </div>
-    <div class="container">
+    <div class="container form-filter_layout">
       <SearchBar :model-value="searchText" :on-search="handleSearch" />
+      <hr />
+      <button type="button" class="favorites-toggle" @click="toggleFavoritesView">
+        {{ showFavoritesOnly ? "Ver todos os eventos" : "Ver somente favoritos" }}
+        <img src="@/assets/icons/heart-filled.svg" alt="favoritos">
+      </button>
     </div>
     <section class="events container">
-      <EventCard v-for="event in filteredEvents" :key="event.id" :event="event" />
+      <EventCard v-for="event in filteredEvents" :key="event.id" :event="event"
+        :is-favorite="favoriteIds.includes(event.id)" :on-toggle-favorite="toggleFavorite" />
       <div v-if="filteredEvents.length === 0" class="no-events">
         <p>Nenhum evento encontrado.</p>
       </div>
@@ -131,15 +162,34 @@ h1 {
 
 .events {
   display: grid;
-  grid-template-columns: repeat(5, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 16px;
   margin-top: 24px;
 }
 
-@media (min-width:) {}
-
 .welcome {
   margin-bottom: 24px;
   text-align: center;
+}
+
+.favorites-toggle {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--font-medium);
+  white-space: nowrap;
+  padding: 8px 14px;
+  border: 1px solid var(--primary-color);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--primary-color);
+  cursor: pointer;
+
+}
+
+.form-filter_layout {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 15px;
 }
 </style>

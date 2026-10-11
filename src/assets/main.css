@@ -9,7 +9,7 @@
   --font-xlarge: 24px;
   --font-2xlarge: 28px;
   --font-3xlarge: 32px;
-  --breakpoint-xl: 1200px;
+  --breakpoint-xl: 1600px;
   --breakpoint-lg: 992px;
   --breakpoint-md: 768px;
   --breakpoint-sm: 576px;
@@ -64,5 +64,8 @@ p {
 @media (min-width: 1200px) {
   .container {
     padding: 0 60px;
+    max-width: var(--breakpoint-xl);
+    margin-left: auto;
+    margin-right: auto;
   }
 }
