@@ -4,6 +4,7 @@ import Layout from "@/components/Layout.vue"
 import EventCard from "@/components/EventCard.vue"
 import EventCarousel from "@/components/EventCarousel.vue"
 import SearchBar from "@/components/SearchBar.vue"
+import CategoryFilter from "@/components/CategoryFilter.vue"
 import slideMangueirao from "@/assets/banners/festival-no-mangueirao.png"
 import slideTeatro from "@/assets/banners/show-no-teatro.png"
 import slideCirio from "@/assets/banners/cirio-de-nazare.png"
@@ -97,9 +98,27 @@ const filteredEvents = computed(() => {
       query === "" || event.title.toLowerCase().includes(query)
     const matchesFavorites =
       !showFavoritesOnly.value || favoriteIds.value.includes(event.id)
-    return matchesQuery && matchesFavorites
+    const matchesCategory =
+      selectedCategory.value === "Todos" || event.category === selectedCategory.value
+    return matchesQuery && matchesFavorites && matchesCategory
   })
 })
+
+const categories = computed(() => {
+  const list = []
+  for (const event of events.value) {
+    if (!list.includes(event.category)) {
+      list.push(event.category)
+    }
+  }
+  return list
+})
+
+const selectedCategory = ref("Todos")
+
+function handleSelectCategory(category) {
+  selectedCategory.value = category
+}
 
 const favoriteIds = ref([])
 const showFavoritesOnly = ref(false)
@@ -137,7 +156,11 @@ const slides = ref([
       <EventCarousel :slides="slides" />
     </div>
     <div class="container form-filter_layout">
-      <SearchBar :model-value="searchText" :on-search="handleSearch" />
+      <div class="form-filter__search_type">
+        <SearchBar :model-value="searchText" :on-search="handleSearch" />
+        <CategoryFilter :categories="Object.entries(EVENTS_CATEGORY).map(([key, value]) => value)"
+          :selected="selectedCategory" :on-select="handleSelectCategory" />
+      </div>
       <hr />
       <button type="button" class="favorites-toggle" @click="toggleFavoritesView">
         {{ showFavoritesOnly ? "Ver todos os eventos" : "Ver somente favoritos" }}
@@ -191,5 +214,10 @@ h1 {
   display: flex;
   flex-direction: row-reverse;
   gap: 15px;
+}
+
+.form-filter__search_type {
+  display: block;
+  width: 100%;
 }
 </style>
