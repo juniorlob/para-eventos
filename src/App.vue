@@ -440,8 +440,8 @@ function closeEventDetails() {
 
 
 .events {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 16px;
   margin-top: 24px;
 }
