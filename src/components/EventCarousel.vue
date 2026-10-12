@@ -32,7 +32,7 @@ console.log("Slides in EventCarousel.vue", props.slides)
   flex: 0 0 auto;
   width: calc(100vw / 6);
   margin: 0;
-  scroll-snap-align: start;
+  scroll-snap-align: center;
   transition: all .5s ease-in-out;
 
 }
@@ -51,6 +51,8 @@ console.log("Slides in EventCarousel.vue", props.slides)
   border: 1px solid transparent;
   transition: all .5s ease-in-out;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  user-select: none;
+
 }
 
 .carousel__item:hover .carousel__image {

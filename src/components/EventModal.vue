@@ -8,7 +8,9 @@ const props = defineProps(["event", "onClose"])
       <button type="button" class="modal-close" aria-label="Fechar detalhes" @click="props.onClose">
         ×
       </button>
-      <img class="modal-cover" :src="props.event.imageUrl" :alt="props.event.title" />
+      <img class="modal-cover"
+        :src="props.event.imageUrl || `https://mockimage.tw/photo/500x400/ffffff/000000/${props.event.title}`"
+        :alt="props.event.title" />
       <div class="modal-body">
         <span class="modal-category">{{ props.event.category }}</span>
         <h2 class="modal-title">{{ props.event.title }}</h2>

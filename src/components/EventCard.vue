@@ -22,7 +22,9 @@ const props = defineProps({
 
 <template>
   <article class="event-card" @click="props.onOpen(props.event)">
-    <img class="event-card__cover" :src="props.event.imageUrl" :alt="props.event.title" />
+    <img class="event-card__cover"
+      :src="props.event.imageUrl || `https://mockimage.tw/photo/500x400/ffffff/000000/${props.event.title}`"
+      :alt="props.event.title" />
     <div class="event-card__body">
       <div class="event-card__top-row">
         <span class="event-card__category">{{ props.event.category }}</span>
@@ -54,9 +56,16 @@ const props = defineProps({
   border-radius: 8px;
   overflow: hidden;
   background: #fff;
+  flex: 1 1 280px;
   max-width: 400px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   transition: all .2s ease-in-out
+}
+
+@media (max-width: 635px) {
+  .event-card {
+    max-width: none;
+  }
 }
 
 .event-card:hover {
@@ -132,5 +141,6 @@ const props = defineProps({
   width: 15px;
   height: 15px;
   margin-right: 2px;
+  user-select: none;
 }
 </style>
