@@ -5,6 +5,7 @@ import EventCard from "@/components/EventCard.vue"
 import EventCarousel from "@/components/EventCarousel.vue"
 import SearchBar from "@/components/SearchBar.vue"
 import CategoryFilter from "@/components/CategoryFilter.vue"
+import EventModal from "@/components/EventModal.vue"
 import slideMangueirao from "@/assets/banners/festival-no-mangueirao.png"
 import slideTeatro from "@/assets/banners/show-no-teatro.png"
 import slideCirio from "@/assets/banners/cirio-de-nazare.png"
@@ -19,6 +20,7 @@ import palestraCultura from "@/assets/eventos/palestra-cultura-paraense.png"
 
 const EVENTS_CATEGORY = {
   SHOW: "show",
+  RELIGIOSO: "Religioso",
   TEATRO: "teatro",
   CULINARIO: "culinario",
   MUSEU: "museu",
@@ -36,7 +38,9 @@ const initialEvents = [
     imageUrl: showMangueirao,
     description:
       "O maior palco do Norte recebe os principais artistas nacionais para uma noite inesquecível no Estádio do Mangueirão. Estrutura completa com praça de alimentação, espaço family e after party. Traga sua energia para celebrar o verão paraense!",
+    banner: slideMangueirao,
   },
+
   {
     id: "teatro-amazonia-em-cena",
     title: 'Espetáculo "Amazônia em Cena"',
@@ -45,6 +49,7 @@ const initialEvents = [
     time: "19:30",
     location: "Theatro da Paz - Praça da República, Belém-PA",
     imageUrl: teatroAmazonia,
+    banner: slideTeatro,
     description:
       "Espetáculo teatral que homenageia as lendas e mitos da Amazônia, com figurinos inspirados na cultura marajoara e trilha sonora ao vivo. Apresentação única no mais belo teatro da região Norte, patrimônio histórico de Belém.",
   },
@@ -56,6 +61,7 @@ const initialEvents = [
     time: "17:00",
     location: "Hangar Centro de Convenções - Belém-PA",
     imageUrl: festivalSabores,
+    banner: slideGastronomico,
     description:
       "O maior festival de culinária paraense do ano! Mais de 30 chefs apresentando pratos típicos como tacacá, maniçoba, pato no tucupi e açaí. Oficinas de culinária, degustações e concurso de melhor prato. Evento ideal para toda família.",
   },
@@ -67,6 +73,7 @@ const initialEvents = [
     time: "10:00",
     location: "Museu Paraense Emílio Goeldi - Av. Magalhães Barata, 376, São Brás",
     imageUrl: exposicaoRaizes,
+    banner: slideMuseu,
     description:
       "Nova exposição permanente com acervo de cerâmica marajoara, artefatos indígenas e trajes típicos paraenses. Visita guiada com curadores do museu mais antigo da Amazônia. Entrada gratuita para estudantes.",
   },
@@ -77,12 +84,26 @@ const initialEvents = [
     date: "2026-12-10",
     time: "14:00",
     location: "Museu do Estado do Pará - MEP, Belém-PA",
+    banner: slidePalestras,
     imageUrl: palestraCultura,
     description:
       "Uma jornada pela história, cultura, tradições e manifestações artísticas do Pará. Palestrante especialista em folclore amazônico aborda Círio de Nazaré, Carimbó, Bumba Meu Boi e artes visuais paraenses. Vagas limitadas, inscrições gratuitas.",
   },
+  // {
+  //   id: "cirio-2026",
+  //   title: "",
+  //   category: EVENTS_CATEGORY.RELIGIOSO,
+  //   date: "2026-12-10",
+  //   time: "14:00",
+  //   location: "Belém - Pará",
+  //   imageUrl:
+  //     banner: palestraCultura,
+  // }
 ]
 
+
+const slides = initialEvents.map(({ id, title, banner }) => { id, title, banner })
+console.log("Slides in app", slides)
 const events = ref(initialEvents)
 
 const searchText = ref("")
@@ -136,14 +157,17 @@ function toggleFavoritesView() {
   showFavoritesOnly.value = !showFavoritesOnly.value
 }
 
-const slides = ref([
-  { src: slideMangueirao, title: "Festival no Mangueirão" },
-  { src: slideTeatro, title: "Show no Teatro" },
-  { src: slideCirio, title: "Círio de Nazaré" },
-  { src: slidePalestras, title: "Palestras Cultura Paraense" },
-  { src: slideGastronomico, title: "Festival Gastronômico" },
-  { src: slideMuseu, title: "Evento no Museu" },
-])
+const selectedEvent = ref(null)
+
+function openEventDetails(event) {
+  selectedEvent.value = event
+}
+
+function closeEventDetails() {
+  selectedEvent.value = null
+}
+
+
 </script>
 
 <template>
@@ -153,7 +177,7 @@ const slides = ref([
     </div>
 
     <div class="container">
-      <EventCarousel :slides="slides" />
+      <EventCarousel :slides="initialEvents" :on-open="openEventDetails" />
     </div>
     <div class="container form-filter_layout">
       <div class="form-filter__search_type">
@@ -169,11 +193,13 @@ const slides = ref([
     </div>
     <section class="events container">
       <EventCard v-for="event in filteredEvents" :key="event.id" :event="event"
-        :is-favorite="favoriteIds.includes(event.id)" :on-toggle-favorite="toggleFavorite" />
+        :is-favorite="favoriteIds.includes(event.id)" :on-toggle-favorite="toggleFavorite"
+        :on-open="openEventDetails" />
       <div v-if="filteredEvents.length === 0" class="no-events">
         <p>Nenhum evento encontrado.</p>
       </div>
     </section>
+    <EventModal :event="selectedEvent" :on-close="closeEventDetails" />
   </Layout>
 </template>
 

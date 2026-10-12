@@ -13,18 +13,22 @@ const props = defineProps({
     type: Function,
     required: true,
   },
+  onOpen: {
+    type: Function,
+    required: true,
+  },
 })
 </script>
 
 <template>
-  <article class="event-card">
+  <article class="event-card" @click="props.onOpen(props.event)">
     <img class="event-card__cover" :src="props.event.imageUrl" :alt="props.event.title" />
     <div class="event-card__body">
       <div class="event-card__top-row">
         <span class="event-card__category">{{ props.event.category }}</span>
         <button type="button" class="event-card__favorite" :class="{ 'event-card__favorite--active': props.isFavorite }"
           :aria-label="props.isFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'"
-          @click="props.onToggleFavorite(props.event.id)">
+          @click.stop="props.onToggleFavorite(props.event.id)">
           <img v-show="isFavorite" alt="desfavoritar" src="@/assets/icons/heart-filled.svg" />
           <img v-show="!isFavorite" src="@/assets/icons/heart.svg" alt="favoritar">
         </button>
@@ -51,6 +55,15 @@ const props = defineProps({
   overflow: hidden;
   background: #fff;
   max-width: 400px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  transition: all .2s ease-in-out
+}
+
+.event-card:hover {
+  border: 1px solid var(--primary-color);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  cursor: pointer;
+
 }
 
 .event-card__cover {
@@ -66,6 +79,7 @@ const props = defineProps({
 
 .event-card__category {
   display: inline-block;
+  text-transform: capitalize;
   font-size: var(--font-small);
   color: #fff;
   background: var(--secondary-color);

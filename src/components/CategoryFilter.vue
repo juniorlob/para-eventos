@@ -1,17 +1,7 @@
 <script setup>
 import { defineProps } from 'vue';
 
-const props = defineProps({
-  categories: {
-    type: Array,
-  },
-  selected: {
-    type: String,
-  },
-  onSelect: {
-    type: Function,
-  },
-})
+const props = defineProps(["categories", "selected", "onSelect"])
 </script>
 
 <template>
