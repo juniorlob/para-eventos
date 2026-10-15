@@ -14,7 +14,8 @@ const props = defineProps(["event", "onClose"])
       <div class="modal-body">
         <span class="modal-category">{{ props.event.category }}</span>
         <h2 class="modal-title">{{ props.event.title }}</h2>
-        <p class="modal-meta">{{ props.event.date }} às {{ props.event.time }}</p>
+        <p class="modal-meta">{{ Intl.DateTimeFormat("pt-BR").format(new Date(props.event.date)) }} às {{
+          props.event.time }}</p>
         <p class="modal-meta">{{ props.event.location }}</p>
         <p class="modal-description">{{ props.event.description }}</p>
       </div>
@@ -75,6 +76,7 @@ const props = defineProps(["event", "onClose"])
 
 .modal-category {
   display: inline-block;
+  text-transform: capitalize;
   font-size: var(--font-small);
   color: #fff;
   background: var(--secondary-color);
