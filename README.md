@@ -1,38 +1,50 @@
-# .
+# ParáEventos
 
-This template should help get you started developing with Vue 3 in Vite.
+A sua agenda cultural e de lazer na Região Metropolitana.
 
-## Recommended IDE Setup
+## Sobre o projeto
+Aplicação simples para consultar eventos culturais, gastronômicos, esportivos e de entretenimento em Belém e Ananindeua, no Pará. Desenvolvida como trabalho da disciplina de Frontend, no primeiro semestre do curso de ADS.
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Como executar
+1. Baixe ou clone este repositório
+2. Abra o terminal na pasta do projeto
+3. Execute:
+   ```bash
+   npm install
+   npm run dev
+   ```
+4. Acesse o link que aparece no terminal (geralmente http://localhost:5173)
 
-## Recommended Browser Setup
+## O que a aplicação faz
+- Lista eventos com foto, título, data, hora e local
+- Busca por nome do evento
+- Favoritos: marque os eventos que mais te interessam
+- Filtro por tipo (Show, Teatro, Culinário, Museu, Palestras, Religioso)
+- Detalhes do evento ao clicar no card
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+## Documento de requisitos
+O desenvolvimento seguiu o documento de requisitos da disciplina:  
+https://docs.google.com/document/d/e/2PACX-1vS44xzjsYP0xMKYM-nQROwIpYCS0HmV21Dp0oaV2hA2dGt8UWOgWb8PIUp6DJdoGX_mp8TGQdP53BIo/pub
 
-## Customize configuration
+## Ferramentas e método
+- **Vue 3 + Vite**: construção da aplicação
+- **CSS puro**: estilização, sem frameworks como Bootstrap ou Tailwind
+- **GitHub LiveShare**: programação em par, desenvolvido ao vivo entre os integrantes
+- **GitHub Projects**: board de tarefas para organizar as etapas do projeto
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+## Repositório e colaboração
+Projeto desenvolvido em conjunto por todos os integrantes da equipe, com colaboração via GitHub. Todo o trabalho foi feito através de Pull Requests, que podem ser verificadas no histórico de commits e PRs do repositório.
 
-## Project Setup
+Alguns padrões de estilo (BEM) podem ter sido utilizados de forma livre, fugindo um pouco do padrão rígido, pois o foco foi o aprendizado dos fundamentos de Vue.
 
-```sh
-npm install
-```
+## Vídeo de apresentação
+O vídeo de pitch (máximo 5 minutos) será entregue em anexo para o professor, conforme exigido na entrega da atividade.
 
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+## Requisitos atendidos
+- Aplicação One Page (sem navegação entre páginas)
+- Sem Vue Router
+- Sem bibliotecas externas de componentes ou CSS
+- Pelo menos 4 componentes em arquivos .vue utilizados no App.vue
+- Uso de <script setup>, props, ref(), eventos (@click, @input) e diretivas (v-if, v-show, v-for, v-model)
+- Reúso de componentes
+- Estrutura organizada de pastas
