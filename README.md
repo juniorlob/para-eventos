@@ -27,7 +27,7 @@ O desenvolvimento seguiu o documento de requisitos do projeto:
 https://docs.google.com/document/d/e/2PACX-1vS44xzjsYP0xMKYM-nQROwIpYCS0HmV21Dp0oaV2hA2dGt8UWOgWb8PIUp6DJdoGX_mp8TGQdP53BIo/pub
 
 ## Prompts utilizados com IA
-O uso de IA foi permitido como ferramenta de apoio, e todo código gerado foi revisado, testado e compreendido pela equipe. Abaixo estão os prompts utilizados nesta tarefa:
+Abaixo estão os prompts utilizados nesta tarefa:
 
 **Prompt 1 – Lista de eventos e descrição dos banners:**
 
