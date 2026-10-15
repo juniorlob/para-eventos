@@ -18,6 +18,24 @@ import festivalSabores from "@/assets/eventos/festival-sabores-do-para.jpeg"
 import exposicaoRaizes from "@/assets/eventos/exposicao-raizes-da-amazonia.jpeg"
 import palestraCultura from "@/assets/eventos/palestra-cultura-paraense.png"
 import HeaderImage from "@/assets/belem.jpg"
+import misterioTeatro from "@/assets/eventos/o-misterio-do-teatro-antigo.jpeg"
+import noiteSamba from "@/assets/eventos/noite-do-samba-e-pagode.jpeg"
+import festivalCarnaval from "@/assets/eventos/festival-musical-de-carnaval.jpeg"
+import encontroFe from "@/assets/eventos/encontro-de-fe-e-esperanca.jpeg"
+import festivalGospel from "@/assets/eventos/festival-de-musica-gospel.jpeg"
+import congressoRenovacao from "@/assets/eventos/congresso-de-renovacao-espiritual.jpeg"
+import festivalVerao2027 from "@/assets/eventos/festival-de-verao-2027.jpeg"
+import pequenoSonhador from "@/assets/eventos/as-aventuras-do-pequeno-sonhador.jpeg"
+import comediaFamilia from "@/assets/eventos/comedia-familia-em-apuros.jpeg"
+import festivalGastronomicoVerao from "@/assets/eventos/festival-gastronomico-de-verao.jpeg"
+import saboresAmazonia from "@/assets/eventos/sabores-da-amazonia.jpeg"
+import comidaRua from "@/assets/eventos/festival-de-comida-de-rua.jpeg"
+import memoriasCidade from "@/assets/eventos/exposicao-memorias-da-cidade.jpeg"
+import arteAmazonica from "@/assets/eventos/arte-e-cultura-amazonica.jpeg"
+import museuInterativo from "@/assets/eventos/museu-interativo-ciencia-e-tecnologia.jpeg"
+import iaFuturo from "@/assets/eventos/inteligencia-artificial-e-o-futuro.jpeg"
+import empreendedorismo from "@/assets/eventos/empreendedorismo-digital-em-2027.jpeg"
+import marketingRedes from "@/assets/eventos/marketing-redes-sociais-e-criatividade.jpeg"
 
 
 const EVENTS_CATEGORY = {
@@ -99,6 +117,7 @@ const initialEvents = [
     date: "2027-01-08",
     time: "19:00",
     location: "Praça de Eventos",
+    imageUrl: festivalVerao2027,
     description:
       "Prepare-se para uma noite inesquecível de música, alegria e diversão! O Festival de Verão 2027 reúne artistas regionais, apresentações ao vivo e atrações culturais para celebrar o melhor da temporada.",
   },
@@ -109,6 +128,7 @@ const initialEvents = [
     date: "2027-01-22",
     time: "20:00",
     location: "Arena Cultural",
+    imageUrl: noiteSamba,
     description:
       "Uma noite dedicada aos grandes sucessos do samba e pagode brasileiro. Venha cantar, dançar e aproveitar apresentações musicais em um ambiente animado, cheio de energia e descontração.",
   },
@@ -119,6 +139,7 @@ const initialEvents = [
     date: "2027-02-06",
     time: "18:00",
     location: "Parque da Cidade",
+    imageUrl: festivalCarnaval,
     description:
       "Entre no ritmo do Carnaval com uma programação repleta de música, cores e alegria. O festival reúne bandas, apresentações especiais e muita animação para celebrar uma das maiores festas brasileiras.",
   },
@@ -130,6 +151,7 @@ const initialEvents = [
     date: "2027-01-10",
     time: "18:00",
     location: "Centro de Convenções",
+    imageUrl: encontroFe,
     description:
       "Um momento especial de espiritualidade, união e fortalecimento da fé. O encontro contará com louvores, reflexões e mensagens inspiradoras para renovar a esperança e compartilhar experiências.",
   },
@@ -140,6 +162,7 @@ const initialEvents = [
     date: "2027-01-24",
     time: "19:00",
     location: "Praça Central",
+    imageUrl: festivalGospel,
     description:
       "Uma celebração de fé por meio da música gospel. O festival reúne apresentações de grupos musicais, momentos de louvor e mensagens de esperança em uma noite especial para toda a comunidade.",
   },
@@ -150,6 +173,7 @@ const initialEvents = [
     date: "2027-02-14",
     time: "09:00",
     location: "Auditório Municipal",
+    imageUrl: congressoRenovacao,
     description:
       "Um encontro dedicado ao crescimento espiritual e à reflexão pessoal. A programação inclui palestras, mensagens inspiradoras e atividades que promovem a fé, a união e a renovação interior.",
   },
@@ -161,6 +185,7 @@ const initialEvents = [
     date: "2027-01-12",
     time: "19:30",
     location: "Teatro Municipal",
+    imageUrl: misterioTeatro,
     description:
       "Uma história intrigante que mistura suspense, humor e acontecimentos inesperados. Entre personagens misteriosos e grandes revelações, o espetáculo promete prender a atenção do público do início ao fim.",
   },
@@ -171,6 +196,7 @@ const initialEvents = [
     date: "2027-01-30",
     time: "16:00",
     location: "Centro Cultural",
+    imageUrl: pequenoSonhador,
     description:
       "Um espetáculo infantil cheio de magia, aventura e imaginação. A história acompanha um pequeno sonhador em descobertas surpreendentes, transmitindo mensagens sobre amizade, coragem e criatividade.",
   },
@@ -181,6 +207,7 @@ const initialEvents = [
     date: "2027-02-20",
     time: "20:00",
     location: "Teatro da Cidade",
+    imageUrl: comediaFamilia,
     description:
       "Prepare-se para muitas risadas com uma família envolvida em situações inesperadas. Entre confusões, mal-entendidos e momentos divertidos, a comédia apresenta histórias com as quais todos podem se identificar.",
   },
@@ -192,6 +219,7 @@ const initialEvents = [
     date: "2027-01-15",
     time: "17:00",
     location: "Espaço Gastronômico",
+    imageUrl: festivalGastronomicoVerao,
     description:
       "Uma experiência gastronômica repleta de sabores, aromas e criatividade. O festival reúne pratos regionais, chefs convidados, receitas especiais e música ao vivo para proporcionar momentos inesquecíveis.",
   },
@@ -202,6 +230,7 @@ const initialEvents = [
     date: "2027-02-05",
     time: "18:00",
     location: "Feira Cultural",
+    imageUrl: saboresAmazonia,
     description:
       "Descubra a riqueza da culinária amazônica em uma experiência de sabores e tradições. O evento valoriza ingredientes regionais, receitas típicas e a diversidade gastronômica que representa a cultura da Amazônia.",
   },
@@ -212,6 +241,7 @@ const initialEvents = [
     date: "2027-02-21",
     time: "16:00",
     location: "Praça de Alimentação",
+    imageUrl: comidaRua,
     description:
       "Uma verdadeira celebração da gastronomia de rua, com food trucks, comidas artesanais, lanches especiais e sobremesas irresistíveis. Um ambiente descontraído para reunir amigos e familiares.",
   },
@@ -223,6 +253,7 @@ const initialEvents = [
     date: "2027-01-09",
     time: "10:00",
     location: "Museu Histórico",
+    imageUrl: memoriasCidade,
     description:
       "Uma viagem pela história da cidade por meio de fotografias, documentos e objetos antigos. A exposição apresenta acontecimentos, personagens e transformações que ajudaram a construir a identidade local.",
   },
@@ -233,6 +264,7 @@ const initialEvents = [
     date: "2027-01-27",
     time: "09:00",
     location: "Museu de Arte",
+    imageUrl: arteAmazonica,
     description:
       "Uma exposição dedicada à riqueza artística e cultural da Amazônia. Conheça obras inspiradas nas tradições, nos povos, nas paisagens e nas manifestações culturais que representam a identidade amazônica.",
   },
@@ -243,6 +275,7 @@ const initialEvents = [
     date: "2027-02-19",
     time: "10:00",
     location: "Museu de Ciências",
+    imageUrl: museuInterativo,
     description:
       "Explore o universo da ciência e da tecnologia por meio de experiências interativas e atividades educativas. Uma oportunidade para descobrir inovações, compreender fenômenos científicos e despertar a curiosidade.",
   },
@@ -253,6 +286,7 @@ const initialEvents = [
     date: "2027-01-18",
     time: "19:00",
     location: "Auditório de Tecnologia",
+    imageUrl: iaFuturo,
     description:
       "Descubra como a inteligência artificial está transformando empresas, profissões e a sociedade. A palestra aborda inovações tecnológicas, oportunidades e os principais desafios do futuro digital.",
   },
@@ -263,6 +297,7 @@ const initialEvents = [
     date: "2027-02-11",
     time: "18:30",
     location: "Centro Empresarial",
+    imageUrl: empreendedorismo,
     description:
       "Conheça estratégias para criar, desenvolver e fortalecer negócios no ambiente digital. A palestra apresenta tendências de mercado, oportunidades de empreendedorismo e ferramentas para impulsionar resultados.",
   },
@@ -273,6 +308,7 @@ const initialEvents = [
     date: "2027-02-25",
     time: "19:00",
     location: "Auditório Cultural",
+    imageUrl: marketingRedes,
     description:
       "Explore as principais tendências de marketing digital, produção de conteúdo e redes sociais. A palestra apresenta estratégias criativas para fortalecer marcas, alcançar novos públicos e melhorar a comunicação.",
   },
