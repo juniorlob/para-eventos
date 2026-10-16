@@ -38,7 +38,7 @@ const props = defineProps({
       <h2 class="event-card__title">{{ props.event.title }}</h2>
       <p class="event-card__meta">
         <img src="@/assets/icons/calendar.svg" alt="" class="event-card__meta-icon" /> {{
-          Intl.DateTimeFormat('pt-BR',).format(new Date(props.event.date)) }} às {{
+          Intl.DateTimeFormat('pt-BR',).format(new Date(`${props.event.date}T00:00:00`)) }} às {{
           props.event.time }}
       </p>
       <p class="event-card__meta">
