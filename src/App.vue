@@ -12,7 +12,7 @@ import slideCirio from "@/assets/banners/cirio-de-nazare.jpeg"
 import slidePalestras from "@/assets/banners/palestras-cultura-paraense.png"
 import slideGastronomico from "@/assets/banners/festival-gastronomico.jpeg"
 import slideMuseu from "@/assets/banners/evento-no-museu.jpeg"
-import showMangueirao from "@/assets/eventos/show-mangueirao-2025.png"
+import showMangueirao from "@/assets/eventos/show-mangueirao-2027.png"
 import teatroAmazonia from "@/assets/eventos/teatro-amazonia-em-cena.png"
 import festivalSabores from "@/assets/eventos/festival-sabores-do-para.jpeg"
 import exposicaoRaizes from "@/assets/eventos/exposicao-raizes-da-amazonia.jpeg"
@@ -49,11 +49,11 @@ const EVENTS_CATEGORY = {
 
 const initialEvents = [
   {
-    id: "show-mangueirao-2025",
-    title: "Show Nacional - Verão Amazônico 2025",
+    id: "show-mangueirao-2027",
+    title: "Show Nacional - Verão Amazônico 2027",
     category: EVENTS_CATEGORY.SHOW,
-    date: "2026-12-15",
-    time: "20:00",
+    date: "2027-02-23",
+    time: "18:00",
     location: "Estádio Olímpico do Pará - Mangueirão, Belém-PA",
     imageUrl: showMangueirao,
     description:
@@ -77,7 +77,7 @@ const initialEvents = [
     id: "festival-sabores-do-para",
     title: "Festival Gastronômico Sabores do Pará",
     category: EVENTS_CATEGORY.CULINARIO,
-    date: "2026-12-05",
+    date: "2027-01-05",
     time: "17:00",
     location: "Hangar Centro de Convenções - Belém-PA",
     imageUrl: festivalSabores,
@@ -89,7 +89,7 @@ const initialEvents = [
     id: "exposicao-raizes-da-amazonia",
     title: 'Exposição "Raízes da Amazônia"',
     category: EVENTS_CATEGORY.MUSEU,
-    date: "2026-12-18",
+    date: "2027-01-18",
     time: "10:00",
     location: "Museu Paraense Emílio Goeldi - Av. Magalhães Barata, 376, São Brás",
     imageUrl: exposicaoRaizes,
@@ -101,7 +101,7 @@ const initialEvents = [
     id: "palestra-cultura-paraense",
     title: "Palestra: Cultura Paraense - História e Tradições",
     category: EVENTS_CATEGORY.PALESTRAS,
-    date: "2026-12-10",
+    date: "2025-12-10",
     time: "14:00",
     location: "Museu do Estado do Pará - MEP, Belém-PA",
     banner: slidePalestras,
