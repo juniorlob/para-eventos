@@ -417,7 +417,7 @@ function closeEventDetails() {
     <div class="container events-info__space">
       <p v-if="filteredEvents.length > 0">{{ filteredEvents.length }} Eventos encontrados</p>
     </div>
-    <section class="events container">
+    <section class="grid grid-cols-5 gap-2 container">
       <EventCard v-for="event in filteredEvents" :key="event.id" :event="event"
         :is-favorite="favoriteIds.includes(event.id)" :on-toggle-favorite="toggleFavorite"
         :on-open="openEventDetails" />

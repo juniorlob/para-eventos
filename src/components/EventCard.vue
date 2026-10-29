@@ -1,4 +1,7 @@
 <script setup>
+import { Calendar, MapPin } from '@lucide/vue';
+import { CardHeader, Card, CardTitle, CardContent, CardFooter, CardDescription } from './ui/card';
+
 
 const props = defineProps({
   event: {
@@ -21,7 +24,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <article class="event-card" @click="props.onOpen(props.event)">
+  <!-- <article class="event-card" @click="props.onOpen(props.event)">
     <img class="event-card__cover"
       :src="props.event.imageUrl || `https://mockimage.tw/photo/500x400/ffffff/000000/${props.event.title}`"
       :alt="props.event.title" />
@@ -47,7 +50,31 @@ const props = defineProps({
         {{ props.event.location }}
       </p>
     </div>
-  </article>
+  </article> -->
+
+
+
+  <Card class="pt-0">
+    <CardHeader class="p-0">
+      <img class="object-cover rounded-t-xl h-45 w-full"
+        :src="props.event.imageUrl || `https://mockimage.tw/photo/500x400/ffffff/000000/${props.event.title}`"
+        :alt="props.event.title" />
+    </CardHeader>
+    <CardHeader>
+      <CardTitle>{{ props.event.title }}</CardTitle>
+    </CardHeader>
+    <CardContent>
+    <p class="flex items-start gap-1 text-sm">
+          <Calendar class="text-red-500 h-4 w-4" />
+          {{ Intl.DateTimeFormat('pt-BR',).format(new Date(`${props.event.date}T00:00:00`)) }} às {{
+            props.event.time }}
+        </p>
+        <p class="flex items-start gap-1 text-sm">
+          <MapPin class="text-red-500 h-4 w-6" />
+          {{ props.event.location }}
+        </p>
+    </CardContent>
+  </Card>
 </template>
 
 <style scoped>
