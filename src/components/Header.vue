@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <header class="header">
+  <header class="header z-30">
     <div class="container">
       <nav class="navbar">
         <img src="@/assets/logo.png" alt="Logo" class="logo" />
