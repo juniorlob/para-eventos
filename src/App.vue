@@ -387,12 +387,16 @@ function closeEventDetails() {
 
 <template>
   <Layout>
-    <div class="header"
-      :style="`background-image: linear-gradient(180deg,rgba(2, 0, 36, .5) 0%, rgba(9, 9, 121, .5) 35%, rgba(0, 212, 255, .5) 100%), url(${HeaderImage})`">
-      <div class="container header__wrapper">
-        <h1 class="header__title">A sua agenda de cultura e lazer <br> na Região Metropolitana</h1>
-      </div>
-    </div>
+   <div 
+  class="h-75 md:h-100 mb-10 bg-no-repeat bg-cover bg-top"
+  :style="`background-image: linear-gradient(180deg, rgba(2, 0, 36, .5) 0%, rgba(9, 9, 121, .5) 35%, rgba(0, 212, 255, .5) 100%), url(${HeaderImage})`"
+>
+  <div class="container h-full flex mx-auto">
+    <h1 class="text-white text-[calc(1.3*var(--font-3xlarge))] text-center m-auto font-black">
+      A sua agenda de cultura e lazer <br> na Região Metropolitana
+    </h1>
+  </div>
+</div>
 
     <div class="container">
       <EventCarousel :slides="initialEvents.filter(({ banner }) => typeof banner === 'string')"
@@ -426,29 +430,6 @@ function closeEventDetails() {
 </template>
 
 <style scoped>
-.header {
-  height: 400px;
-  margin-bottom: 40px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: top;
-}
-
-
-
-
-.header__wrapper {
-  height: 100%;
-  display: flex;
-}
-
-.header__title {
-  color: #fff;
-  font-size: calc(1.3 * var(--font-3xlarge));
-  text-align: center;
-  margin: auto;
-  font-weight: 900;
-}
 
 .form-filter_layout {
   display: flex;
@@ -457,17 +438,7 @@ function closeEventDetails() {
 }
 
 @media (max-width: 576px) {
-  .header {
-    max-height: 300px
-  }
-
-
-
-  .header__title {
-    font-size: var(--font-large);
-  }
-
-  .form-filter_layout {
+   .form-filter_layout {
     flex-direction: column-reverse;
     gap: 0px;
 

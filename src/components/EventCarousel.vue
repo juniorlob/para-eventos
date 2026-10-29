@@ -1,87 +1,24 @@
 <script setup>
-const props = defineProps(["slides", "onOpen"])
+import { CarouselItem, Carousel, CarouselContent,CarouselPrevious,CarouselNext } from './ui/carousel';
 
-console.log("Slides in EventCarousel.vue", props.slides)
+const props = defineProps(["slides", "onOpen"])
 </script>
 
 <template>
-  <section v-if="props.slides.length > 0" class="carousel">
-    <div class="carousel__strip">
-      <div v-for="(slide, index) in props.slides" :key="`${slide.id}-${index}`" class="carousel__item"
-        @click="props.onOpen(slide)">
-        <img class="carousel__image" :src="slide.banner" :alt="slide.title" />
-      </div>
-    </div>
-  </section>
+   <Carousel
+    class="w-full z-0"
+    :opts="{
+      align: 'start',
+    }"
+  >
+    <CarouselContent class="-ml-1 mb-6">
+      <CarouselItem v-for="(slide, index) in props.slides" :key="`${slide.id}-${index}`" class="pl-1 md:basis-1/2 lg:basis-1/3 xl:basis-1/4 2xl:basis-1/5" @click="props.onOpen(slide)">
+        <div class="p-1">
+                  <img class=" object-cover rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-500 ease-in-out cursor-pointer" :src="slide.banner" :alt="slide.title" />
+        </div>
+      </CarouselItem>
+    </CarouselContent>
+    <CarouselPrevious />
+    <CarouselNext />
+  </Carousel>
 </template>
-
-<style scoped>
-.carousel {
-  margin-bottom: 8px;
-}
-
-.carousel__strip {
-  display: flex;
-  gap: 12px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding-bottom: 8px;
-}
-
-.carousel__item {
-  flex: 0 0 auto;
-  width: calc(100vw / 6);
-  margin: 0;
-  scroll-snap-align: center;
-  transition: all .5s ease-in-out;
-
-}
-
-.carousel__item:hover {
-  cursor: pointer;
-}
-
-
-.carousel__image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  border-radius: 15px;
-  border: 1px solid transparent;
-  transition: all .5s ease-in-out;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-  user-select: none;
-
-}
-
-.carousel__item:hover .carousel__image {
-  border: 1px solid var(--secondary-color);
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-
-@media (max-width: 1024px) {
-  .carousel__item {
-    width: calc(100vw / 3);
-  }
-}
-
-@media (max-width: 768px) {
-  .carousel__item {
-    width: calc(100vw / 2);
-  }
-}
-
-@media (max-width: 480px) {
-  .carousel__item {
-    width: 85%;
-  }
-
-
-}
-
-.carousel__caption {
-  font-size: var(--font-medium);
-  margin: 4px 0 0;
-}
-</style>
