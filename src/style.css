@@ -28,6 +28,8 @@
   --color-popover-foreground: hsl(var(--popover-foreground));
   --color-card: hsl(var(--card));
   --color-card-foreground: hsl(var(--card-foreground));
+  --color-brand: #b10018;
+  --color-brand-foreground: #ffffff;
 }
 
 @layer base {
