@@ -31,6 +31,8 @@
   --color-brand-primary: #007bff;
   --color-brand-secondary: #b10018;
   --color-brand-foreground: #ffffff;
+  --color-brand-surface: #cbe6ff;
+  --color-brand-surface-border: #c4e2ff;
 }
 
 @layer base {

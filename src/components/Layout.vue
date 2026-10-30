@@ -3,25 +3,11 @@ import Header from "@/components/Header.vue"
 import Footer from "./Footer.vue";
 </script>
 <template>
-  <div class="layout">
+  <div class="flex flex-col min-h-screen">
     <Header />
-    <main class="main">
+    <main class="flex-1 mb-10">
       <slot />
     </main>
     <Footer />
   </div>
 </template>
-
-
-<style scoped>
-.layout {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-.main {
-  flex: 1;
-  margin-bottom: 48px
-}
-</style>
