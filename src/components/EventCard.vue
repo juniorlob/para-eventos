@@ -54,25 +54,43 @@ const props = defineProps({
 
 
 
-  <Card class="pt-0">
-    <CardHeader class="p-0">
-      <img class="object-cover rounded-t-xl h-45 w-full"
+  <Card class="pt-0 cursor-pointer overflow-hidden" @click="props.onOpen(props.event)">
+    <CardHeader
+      class="relative h-45 overflow-hidden flex items-end text-white after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-t after:from-black/80 after:to-transparent after:z-10">
+      <img class="absolute inset-0 z-0 object-cover w-full h-full"
         :src="props.event.imageUrl || `https://mockimage.tw/photo/500x400/ffffff/000000/${props.event.title}`"
         :alt="props.event.title" />
+
+
+
+      <div class=" relative z-20 mb-2">
+        <span class="event-card__category">{{ props.event.category }}</span>
+        <button type="button" class="event-card__favorite" :class="{ 'event-card__favorite--active': props.isFavorite }"
+          :aria-label="props.isFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'"
+          @click.stop="props.onToggleFavorite(props.event.id)">
+          <img v-show="isFavorite" alt="desfavoritar" src="@/assets/icons/heart-filled.svg" />
+          <img v-show="!isFavorite" src="@/assets/icons/heart.svg" alt="favoritar">
+        </button>
+      </div>
     </CardHeader>
-    <CardHeader>
-      <CardTitle>{{ props.event.title }}</CardTitle>
-    </CardHeader>
+
     <CardContent>
-    <p class="flex items-start gap-1 text-sm">
-          <Calendar class="text-red-500 h-4 w-4" />
+      <CardTitle class="relative z-20 mb-4">{{ props.event.title }}</CardTitle>
+
+      <div class="grid grid-cols-12  gap-1 mb-2">
+        <Calendar class="text-red-500 h-4 w-4 col-span-1" />
+        <p class="flex items-start gap-1 text-xs col-span-11">
           {{ Intl.DateTimeFormat('pt-BR',).format(new Date(`${props.event.date}T00:00:00`)) }} às {{
             props.event.time }}
         </p>
-        <p class="flex items-start gap-1 text-sm">
-          <MapPin class="text-red-500 h-4 w-6" />
+      </div>
+      <div class="grid grid-cols-12 gap-1 mb-2">
+        <MapPin class="text-red-500 h-4 w-4 col-span-1" />
+        <p class="flex items-start gap-1 text-xs col-span-11">
+
           {{ props.event.location }}
         </p>
+      </div>
     </CardContent>
   </Card>
 </template>

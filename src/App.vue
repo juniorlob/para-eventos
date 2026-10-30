@@ -387,16 +387,14 @@ function closeEventDetails() {
 
 <template>
   <Layout>
-   <div 
-  class="h-75 md:h-100 mb-10 bg-no-repeat bg-cover bg-top"
-  :style="`background-image: linear-gradient(180deg, rgba(2, 0, 36, .5) 0%, rgba(9, 9, 121, .5) 35%, rgba(0, 212, 255, .5) 100%), url(${HeaderImage})`"
->
-  <div class="container h-full flex mx-auto">
-    <h1 class="text-white text-[calc(1.3*var(--font-3xlarge))] text-center m-auto font-black">
-      A sua agenda de cultura e lazer <br> na Região Metropolitana
-    </h1>
-  </div>
-</div>
+    <div class="h-75 md:h-100 mb-10 bg-no-repeat bg-cover bg-top"
+      :style="`background-image: linear-gradient(180deg, rgba(2, 0, 36, .5) 0%, rgba(9, 9, 121, .5) 35%, rgba(0, 212, 255, .5) 100%), url(${HeaderImage})`">
+      <div class="container h-full flex mx-auto">
+        <h1 class="text-white text-[calc(1.3*var(--font-3xlarge))] text-center m-auto font-black">
+          A sua agenda de cultura e lazer <br> na Região Metropolitana
+        </h1>
+      </div>
+    </div>
 
     <div class="container">
       <EventCarousel :slides="initialEvents.filter(({ banner }) => typeof banner === 'string')"
@@ -417,7 +415,7 @@ function closeEventDetails() {
     <div class="container events-info__space">
       <p v-if="filteredEvents.length > 0">{{ filteredEvents.length }} Eventos encontrados</p>
     </div>
-    <section class="grid grid-cols-5 gap-2 container">
+    <section class="grid grid-cols-4 gap-2 container">
       <EventCard v-for="event in filteredEvents" :key="event.id" :event="event"
         :is-favorite="favoriteIds.includes(event.id)" :on-toggle-favorite="toggleFavorite"
         :on-open="openEventDetails" />
@@ -430,7 +428,6 @@ function closeEventDetails() {
 </template>
 
 <style scoped>
-
 .form-filter_layout {
   display: flex;
   flex-direction: row-reverse;
@@ -438,7 +435,7 @@ function closeEventDetails() {
 }
 
 @media (max-width: 576px) {
-   .form-filter_layout {
+  .form-filter_layout {
     flex-direction: column-reverse;
     gap: 0px;
 
