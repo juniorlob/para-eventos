@@ -18,7 +18,7 @@ const props = defineProps(["slides", "onOpen"])
         </div>
       </CarouselItem>
     </CarouselContent>
-    <CarouselPrevious />
-    <CarouselNext />
+    <CarouselPrevious class="left-1 bg-background/90 shadow-md lg:-left-12" />
+    <CarouselNext class="right-1 bg-background/90 shadow-md lg:-right-12" />
   </Carousel>
 </template>
