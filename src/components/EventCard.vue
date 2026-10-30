@@ -62,7 +62,7 @@ function handleKeydown(keyboardEvent) {
 
 <template>
   <Card
-    class="group h-full cursor-pointer gap-0 overflow-hidden py-0 transition-all duration-200 motion-safe:hover:-translate-y-0.5 hover:border-brand hover:shadow-lg focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none"
+    class="group h-full cursor-pointer gap-0 overflow-hidden py-0 transition-all duration-200 motion-safe:hover:-translate-y-0.5 hover:border-brand-secondary hover:shadow-lg focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none"
     role="button" tabindex="0" :aria-label="`Ver detalhes do evento ${props.event.title}`" @click="openEvent"
     @keydown="handleKeydown">
     <CardHeader class="relative h-40 overflow-hidden p-0 sm:h-45">
@@ -74,12 +74,12 @@ function handleKeydown(keyboardEvent) {
         class="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
       <div class="absolute inset-x-0 bottom-0 z-20 flex items-end justify-between gap-2 p-3">
-        <span class="inline-block rounded bg-brand px-2 py-0.5 text-xs font-medium capitalize text-brand-foreground">
+        <span class="inline-block rounded bg-brand-secondary px-2 py-0.5 text-xs font-medium capitalize text-brand-foreground">
           {{ props.event.category }}
         </span>
 
         <Button type="button" variant="ghost" size="icon-sm"
-          class="rounded-full border border-white/40 bg-white/90 text-brand shadow-sm hover:bg-white cursor-pointer focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none"
+          class="rounded-full border border-white/40 bg-white/90 text-brand-secondary shadow-sm hover:bg-white cursor-pointer focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none"
           :aria-label="props.isFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'"
           :aria-pressed="props.isFavorite" @click.stop="toggleFavorite">
           <Heart class="size-4" :fill="props.isFavorite ? 'currentColor' : 'none'" aria-hidden="true" />
@@ -93,14 +93,14 @@ function handleKeydown(keyboardEvent) {
       </CardTitle>
 
       <div class="flex items-center gap-2 text-xs text-muted-foreground">
-        <Calendar class="size-3.5 shrink-0 text-brand" aria-hidden="true" />
+        <Calendar class="size-3.5 shrink-0 text-brand-secondary" aria-hidden="true" />
         <span>
           {{ dateLabel }}<template v-if="props.event.time"> às {{ props.event.time }}</template>
         </span>
       </div>
 
       <div v-if="props.event.location" class="flex items-center gap-2 text-xs text-muted-foreground">
-        <MapPin class="size-3.5 shrink-0 text-brand" aria-hidden="true" />
+        <MapPin class="size-3.5 shrink-0 text-brand-secondary" aria-hidden="true" />
         <span class="line-clamp-1 min-w-0">{{ props.event.location }}</span>
       </div>
     </CardContent>

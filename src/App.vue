@@ -1,11 +1,13 @@
 <script setup>
 import { computed, ref } from "vue"
+import { Heart } from "@lucide/vue"
 import Layout from "@/components/Layout.vue"
 import EventCard from "@/components/EventCard.vue"
 import EventCarousel from "@/components/EventCarousel.vue"
 import SearchBar from "@/components/SearchBar.vue"
 import CategoryFilter from "@/components/CategoryFilter.vue"
 import EventModal from "@/components/EventModal.vue"
+import { Button } from "@/components/ui/button"
 import slideMangueirao from "@/assets/banners/festival-no-mangueirao.jpeg"
 import slideTeatro from "@/assets/banners/show-no-teatro.jpeg"
 import slideCirio from "@/assets/banners/cirio-de-nazare.jpeg"
@@ -400,20 +402,26 @@ function closeEventDetails() {
       <EventCarousel :slides="initialEvents.filter(({ banner }) => typeof banner === 'string')"
         :on-open="openEventDetails" />
     </div>
-    <div class="container form-filter_layout">
-      <div class="form-filter__search_type">
-        <SearchBar :model-value="searchText" :on-search="handleSearch" />
-        <CategoryFilter :categories="Object.entries(EVENTS_CATEGORY).map(([key, value]) => value)"
-          :selected="selectedCategory" :on-select="handleSelectCategory" />
-      </div>
-      <hr />
-      <button type="button" class="favorites-toggle" @click="toggleFavoritesView">
-        {{ showFavoritesOnly ? "Ver todos os eventos" : "Ver somente favoritos" }}
-        <img src="@/assets/icons/heart-filled.svg" alt="favoritos">
-      </button>
+    <div class="container">
+      <SearchBar :model-value="searchText" :on-search="handleSearch" />
+      <CategoryFilter :categories="Object.entries(EVENTS_CATEGORY).map(([key, value]) => value)"
+        :selected="selectedCategory" :on-select="handleSelectCategory">
+        <template #prefix>
+          <Button type="button" variant="outline"
+            class="whitespace-nowrap border-brand-primary text-brand-primary hover:bg-brand-primary/10 hover:text-brand-primary"
+            :class="{ 'border-brand-secondary bg-brand-secondary text-white hover:bg-brand-secondary/90 hover:text-white': showFavoritesOnly }"
+            :aria-pressed="showFavoritesOnly" @click="toggleFavoritesView">
+            <Heart class="size-4" :class="showFavoritesOnly ? 'text-white' : 'text-brand-secondary'" fill="currentColor"
+              aria-hidden="true" />
+            {{ showFavoritesOnly ? "Ver todos os eventos" : "Ver somente favoritos" }}
+          </Button>
+        </template>
+      </CategoryFilter>
     </div>
-    <div class="container events-info__space">
-      <p v-if="filteredEvents.length > 0">{{ filteredEvents.length }} Eventos encontrados</p>
+    <div class="container my-3">
+      <p v-if="filteredEvents.length > 0" class="text-sm text-muted-foreground">
+        {{ filteredEvents.length }} Eventos encontrados
+      </p>
     </div>
     <section class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 container">
       <EventCard v-for="event in filteredEvents" :key="event.id" :event="event"
@@ -426,51 +434,3 @@ function closeEventDetails() {
     <EventModal :event="selectedEvent" :on-close="closeEventDetails" />
   </Layout>
 </template>
-
-<style scoped>
-.form-filter_layout {
-  display: flex;
-  flex-direction: row-reverse;
-  gap: 15px;
-}
-
-@media (max-width: 576px) {
-  .form-filter_layout {
-    flex-direction: column-reverse;
-    gap: 0px;
-
-  }
-}
-
-
-.events-info__space {
-  margin-top: 12px;
-  margin-bottom: 12px
-}
-
-.events-info__space p {
-  margin-bottom: 0;
-}
-
-.favorites-toggle {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-size: var(--font-medium);
-  white-space: nowrap;
-  padding: 8px 14px;
-  border: 1px solid var(--primary-color);
-  border-radius: 8px;
-  background: #fff;
-  color: var(--primary-color);
-  cursor: pointer;
-  justify-content: center;
-}
-
-
-
-.form-filter__search_type {
-  display: block;
-  width: 100%;
-}
-</style>
