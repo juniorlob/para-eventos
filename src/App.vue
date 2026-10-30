@@ -391,11 +391,11 @@ function closeEventDetails() {
   <Layout>
     <Banner />
 
-    <div class="container">
+    <div class="container mx-auto px-4">
       <EventCarousel :slides="initialEvents.filter(({ banner }) => typeof banner === 'string')"
         :on-open="openEventDetails" />
     </div>
-    <div class="container">
+    <div class="container mx-auto px-4">
       <SearchBar :model-value="searchText" :on-search="handleSearch" />
       <CategoryFilter :categories="Object.entries(EVENTS_CATEGORY).map(([key, value]) => value)"
         :selected="selectedCategory" :on-select="handleSelectCategory">
@@ -411,12 +411,12 @@ function closeEventDetails() {
         </template>
       </CategoryFilter>
     </div>
-    <div class="container my-3">
+    <div class="container mx-auto px-4 my-3">
       <p v-if="filteredEvents.length > 0" class="text-sm text-muted-foreground">
         {{ filteredEvents.length }} Eventos encontrados
       </p>
     </div>
-    <section class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 container">
+    <section class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 container mx-auto px-4">
       <EventCard v-for="event in filteredEvents" :key="event.id" :event="event"
         :is-favorite="favoriteIds.includes(event.id)" :on-toggle-favorite="toggleFavorite"
         :on-open="openEventDetails" />
