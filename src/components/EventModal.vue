@@ -1,106 +1,70 @@
 <script setup>
+import { computed } from "vue"
+import { Calendar, MapPin } from "@lucide/vue"
+import { Dialog, DialogContent, DialogDescription, DialogTitle } from "./ui/dialog"
+
+const FALLBACK_IMAGE_BASE = "https://mockimage.tw/photo/500x400/ffffff/000000/"
+
 const props = defineProps(["event", "onClose"])
 
+const imageUrl = computed(
+  () => props.event?.imageUrl || `${FALLBACK_IMAGE_BASE}${encodeURIComponent(props.event?.title ?? "evento")}`,
+)
 
-console.log("props.event", props.event)
+const dateLabel = computed(() => {
+  if (!props.event) return ""
+
+  const parsed = new Date(`${props.event.date}T00:00:00`)
+
+  if (Number.isNaN(parsed.getTime())) return props.event.date
+
+  return new Intl.DateTimeFormat("pt-BR", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  }).format(parsed)
+})
+
+function handleOpenChange(open) {
+  if (!open) props.onClose()
+}
 </script>
 
 <template>
-  <div v-if="props.event" class="modal-overlay" @click="props.onClose">
-    <div class="modal-dialog" @click.stop>
-      <button type="button" class="modal-close" aria-label="Fechar detalhes" @click="props.onClose">
-        ×
-      </button>
-      <img class="modal-cover"
-        :src="props.event.imageUrl || `https://mockimage.tw/photo/500x400/ffffff/000000/${props.event.title}`"
-        :alt="props.event.title" />
-      <div class="modal-body">
-        <span class="modal-category">{{ props.event.category }}</span>
-        <h2 class="modal-title">{{ props.event.title }}</h2>
-        <p class="modal-meta">{{ Intl.DateTimeFormat("pt-BR").format(new Date(`${props.event.date}T00:00:00`)) }} às {{
-          props.event.time }}</p>
-        <p class="modal-meta">{{ props.event.location }}</p>
-        <p class="modal-description">{{ props.event.description }}</p>
+  <Dialog :open="!!props.event" v-on:update:open="handleOpenChange">
+    <DialogContent v-if="props.event"
+      class="max-h-[90vh] gap-0 overflow-y-auto p-0 sm:max-w-[560px] [&>button]:rounded-full [&>button]:bg-black/50 [&>button]:p-1.5 [&>button]:text-white [&>button]:opacity-100 [&>button]:hover:bg-black/70">
+      <div class="relative overflow-hidden rounded-t-lg">
+        <img class="h-56 w-full object-cover sm:h-64" :src="imageUrl" :alt="props.event.title" />
+        <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+        <span
+          class="absolute bottom-3 left-4 rounded bg-brand-secondary px-2 py-0.5 text-xs font-medium capitalize text-brand-foreground">
+          {{ props.event.category }}
+        </span>
       </div>
-    </div>
-  </div>
+
+      <div class="flex flex-col gap-3 p-4 sm:p-5">
+        <DialogTitle class="text-xl font-semibold text-brand-primary sm:text-2xl">
+          {{ props.event.title }}
+        </DialogTitle>
+
+        <div class="flex flex-col gap-1.5 text-sm text-muted-foreground">
+          <div class="flex items-center gap-2">
+            <Calendar class="size-4 shrink-0 text-brand-secondary" aria-hidden="true" />
+            <span>
+              {{ dateLabel }}<template v-if="props.event.time"> às {{ props.event.time }}</template>
+            </span>
+          </div>
+          <div v-if="props.event.location" class="flex items-center gap-2">
+            <MapPin class="size-4 shrink-0 text-brand-secondary" />
+            <span>{{ props.event.location }}</span>
+          </div>
+        </div>
+
+        <DialogDescription v-if="props.event.description" class="text-sm leading-relaxed text-foreground">
+          {{ props.event.description }}
+        </DialogDescription>
+      </div>
+    </DialogContent>
+  </Dialog>
 </template>
-
-<style scoped>
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-}
-
-.modal-dialog {
-  position: relative;
-  background: #fff;
-  border-radius: 8px;
-  max-width: 560px;
-  width: 100%;
-  max-height: 90vh;
-  overflow-y: auto;
-}
-
-.modal-close {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  width: 32px;
-  height: 32px;
-  border: none;
-  border-radius: 50%;
-  font-size: var(--font-large);
-  line-height: 1;
-  background: rgba(0, 0, 0, 0.5);
-  color: #fff;
-  cursor: pointer;
-}
-
-.modal-cover {
-  width: 100%;
-  height: 240px;
-  object-fit: cover;
-  display: block;
-  border-radius: 8px 8px 0 0;
-}
-
-.modal-body {
-  padding: 16px 20px 20px;
-}
-
-.modal-category {
-  display: inline-block;
-  text-transform: capitalize;
-  font-size: var(--font-small);
-  color: #fff;
-  background: var(--secondary-color);
-  border-radius: 4px;
-  padding: 2px 8px;
-  margin-bottom: 8px;
-}
-
-.modal-title {
-  font-size: var(--font-large);
-  color: var(--primary-color);
-  margin: 0 0 8px;
-}
-
-.modal-meta {
-  font-size: var(--font-medium);
-  margin: 4px 0;
-}
-
-.modal-description {
-  font-size: var(--font-medium);
-  margin: 12px 0 0;
-}
-</style>
