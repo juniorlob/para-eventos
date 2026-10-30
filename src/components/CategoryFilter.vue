@@ -1,44 +1,41 @@
 <script setup>
-import { defineProps } from 'vue';
+import { Button } from './ui/button'
 
 const props = defineProps(["categories", "selected", "onSelect"])
 </script>
 
 <template>
-  <div class="category-filter">
-    <button type="button" class="category-filter__button"
-      :class="{ 'category-filter__button--active': props.selected === 'Todos' }" @click="props.onSelect('Todos')">
+  <div class="mt-3 flex flex-wrap items-center gap-2">
+    <slot name="prefix" />
+    <div v-if="$slots.prefix" class="h-6 w-px shrink-0 bg-border" aria-hidden="true" />
+
+    <Button
+      type="button"
+      variant="outline"
+      class="capitalize"
+      :class="{
+        'border-brand-secondary bg-brand-secondary text-white hover:bg-brand-secondary/90 hover:text-white':
+          props.selected === 'Todos',
+      }"
+      :aria-pressed="props.selected === 'Todos'"
+      @click="props.onSelect('Todos')"
+    >
       Todos
-    </button>
-    <button v-for="category in props.categories" :key="category" type="button" class="category-filter__button"
-      :class="{ 'category-filter__button--active': props.selected === category }" @click="props.onSelect(category)">
+    </Button>
+    <Button
+      v-for="category in props.categories"
+      :key="category"
+      type="button"
+      variant="outline"
+      class="capitalize"
+      :class="{
+        'border-brand-secondary bg-brand-secondary text-white hover:bg-brand-secondary/90 hover:text-white':
+          props.selected === category,
+      }"
+      :aria-pressed="props.selected === category"
+      @click="props.onSelect(category)"
+    >
       {{ category }}
-    </button>
+    </Button>
   </div>
 </template>
-
-<style scoped>
-.category-filter {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 12px;
-}
-
-.category-filter__button {
-  font-size: var(--font-medium);
-  text-transform: capitalize;
-  padding: 8px 16px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background: #fff;
-  color: inherit;
-  cursor: pointer;
-}
-
-.category-filter__button--active {
-  border-color: var(--secondary-color);
-  background: var(--secondary-color);
-  color: #fff;
-}
-</style>

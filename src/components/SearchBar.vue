@@ -1,4 +1,6 @@
 <script setup>
+import { Search } from '@lucide/vue'
+import { Input } from './ui/input'
 
 const props = defineProps({
   modelValue: {
@@ -10,35 +12,20 @@ const props = defineProps({
     required: true,
   },
 })
-
-function onInput(event) {
-  props.onSearch(event.target.value)
-}
 </script>
 
 <template>
-  <div class="search-bar">
-    <input class="search-bar__input" type="text" placeholder="Buscar evento por título..." :value="modelValue"
-      @input="onInput" />
+  <div class="relative w-full">
+    <Search
+      class="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground"
+      aria-hidden="true"
+    />
+    <Input
+      class="h-10 pl-9"
+      type="text"
+      placeholder="Buscar evento por título..."
+      :model-value="props.modelValue"
+      :on-input="props.onSearch"
+    />
   </div>
 </template>
-
-<style scoped>
-.search-bar {
-  width: 100%;
-}
-
-.search-bar__input {
-  width: stretch;
-  font-size: var(--font-medium);
-  padding: 10px 14px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-
-}
-
-.search-bar__input:focus {
-  outline: none;
-  border-color: var(--primary-color);
-}
-</style>
