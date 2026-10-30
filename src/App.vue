@@ -415,7 +415,7 @@ function closeEventDetails() {
     <div class="container events-info__space">
       <p v-if="filteredEvents.length > 0">{{ filteredEvents.length }} Eventos encontrados</p>
     </div>
-    <section class="grid grid-cols-4 gap-2 container">
+    <section class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 container">
       <EventCard v-for="event in filteredEvents" :key="event.id" :event="event"
         :is-favorite="favoriteIds.includes(event.id)" :on-toggle-favorite="toggleFavorite"
         :on-open="openEventDetails" />
@@ -442,13 +442,6 @@ function closeEventDetails() {
   }
 }
 
-
-.events {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-top: 24px;
-}
 
 .events-info__space {
   margin-top: 12px;

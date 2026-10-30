@@ -62,12 +62,12 @@ function handleKeydown(keyboardEvent) {
 
 <template>
   <Card
-    class="group h-full cursor-pointer gap-0 overflow-hidden py-0 transition-all duration-200 hover:-translate-y-0.5 hover:border-brand hover:shadow-lg focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none"
+    class="group h-full cursor-pointer gap-0 overflow-hidden py-0 transition-all duration-200 motion-safe:hover:-translate-y-0.5 hover:border-brand hover:shadow-lg focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none"
     role="button" tabindex="0" :aria-label="`Ver detalhes do evento ${props.event.title}`" @click="openEvent"
     @keydown="handleKeydown">
-    <CardHeader class="relative h-45 overflow-hidden p-0">
+    <CardHeader class="relative h-40 overflow-hidden p-0 sm:h-45">
       <img
-        class="absolute inset-0 z-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+        class="absolute inset-0 z-0 h-full w-full object-cover transition-transform duration-300 motion-safe:group-hover:scale-105"
         :src="imageUrl" :alt="props.event.title" width="500" height="400" loading="lazy" decoding="async" />
 
       <div
@@ -87,7 +87,7 @@ function handleKeydown(keyboardEvent) {
       </div>
     </CardHeader>
 
-    <CardContent class="flex flex-col gap-2 p-4">
+    <CardContent class="flex flex-col gap-1.5 p-3 sm:gap-2 sm:p-4">
       <CardTitle class="line-clamp-2 min-h-10 text-base leading-snug">
         {{ props.event.title }}
       </CardTitle>
