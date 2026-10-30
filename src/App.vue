@@ -2,6 +2,7 @@
 import { computed, ref } from "vue"
 import { Heart } from "@lucide/vue"
 import Layout from "@/components/Layout.vue"
+import Banner from "@/components/Banner.vue"
 import EventCard from "@/components/EventCard.vue"
 import EventCarousel from "@/components/EventCarousel.vue"
 import SearchBar from "@/components/SearchBar.vue"
@@ -19,7 +20,6 @@ import teatroAmazonia from "@/assets/eventos/teatro-amazonia-em-cena.png"
 import festivalSabores from "@/assets/eventos/festival-sabores-do-para.jpeg"
 import exposicaoRaizes from "@/assets/eventos/exposicao-raizes-da-amazonia.jpeg"
 import palestraCultura from "@/assets/eventos/palestra-cultura-paraense.png"
-import HeaderImage from "@/assets/belem.jpg"
 import misterioTeatro from "@/assets/eventos/o-misterio-do-teatro-antigo.jpeg"
 import noiteSamba from "@/assets/eventos/noite-do-samba-e-pagode.jpeg"
 import festivalCarnaval from "@/assets/eventos/festival-musical-de-carnaval.jpeg"
@@ -389,14 +389,7 @@ function closeEventDetails() {
 
 <template>
   <Layout>
-    <div class="h-75 md:h-100 mb-10 bg-no-repeat bg-cover bg-top"
-      :style="`background-image: linear-gradient(180deg, rgba(2, 0, 36, .5) 0%, rgba(9, 9, 121, .5) 35%, rgba(0, 212, 255, .5) 100%), url(${HeaderImage})`">
-      <div class="container h-full flex mx-auto">
-        <h1 class="text-white text-[calc(1.3*var(--font-3xlarge))] text-center m-auto font-black">
-          A sua agenda de cultura e lazer <br> na Região Metropolitana
-        </h1>
-      </div>
-    </div>
+    <Banner />
 
     <div class="container">
       <EventCarousel :slides="initialEvents.filter(({ banner }) => typeof banner === 'string')"
