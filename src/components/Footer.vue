@@ -9,30 +9,26 @@ const footerSections = [
   {
     title: 'Sobre a Pará Eventos',
     links: [
-      { label: 'Quem somos', href: '#' },
-      { label: 'Termos e Condições Gerais', href: '#' },
-      { label: 'PARÁ EVENTOS no Pará', href: '#' },
-      { label: 'Política de Privacidade', href: '#' },
-      { label: 'Acessibilidade', href: '#' },
+      { label: 'Quem somos', to: { name: 'quem-somos' } },
+      { label: 'Termos e Condições Gerais', to: { name: 'termos-e-condicoes-gerais' } },
+      { label: 'Política de Privacidade', to: { name: 'politica-de-privacidade' } },
+      { label: 'Segurança', to: { name: 'seguranca' } },
+      { label: 'Sobre os Eventos', to: { name: 'sobre-os-eventos' } },
     ],
   },
   {
     title: 'Atendimento ao Cliente',
     links: [
-      { label: 'Newsletter', href: '#' },
-      { label: 'Mapa do Site', href: '#' },
-      { label: 'Definição de Privacidade', href: '#' },
-      { label: 'Assessoria de Imprensa', href: '#' },
+      { label: 'Assessoria de Imprensa', to: { name: 'assessoria-de-imprensa' } },
+      { label: 'Política de Cancelamento e Reembolso', to: { name: 'politica-de-cancelamento-e-reembolso' } },
+      { label: 'Contato', to: { name: 'contato' } },
     ],
   },
   {
     title: 'Mais PARÁ EVENTOS',
     links: [
-      { label: 'Central de Ajuda / Fale Conosco', href: '#' },
-      { label: 'Pontos de Venda e Retirada em Belém', href: '#' },
-      { label: 'Formas de Pagamento', href: '#' },
-      { label: 'Meia-Entrada', href: '#' },
-      { label: 'Retirada de Ingressos por Terceiros', href: '#' },
+      { label: 'Central de Ajuda / Fale Conosco', to: { name: 'central-de-ajuda' } },
+      { label: 'Formas de Pagamento', to: { name: 'formas-de-pagamento' } },
     ],
   },
 ]
@@ -54,10 +50,11 @@ const socialLinks = [
           </h3>
           <ul class="space-y-2 text-sm">
             <li v-for="link in section.links" :key="link.label">
-              <a :href="link.href"
-                class="text-primary transition-colors hover:text-secondary-foreground hover:underline">
+              <RouterLink :to="link.to"
+                class="text-primary transition-colors hover:text-secondary-foreground hover:underline"
+                active-class="font-semibold text-secondary-foreground">
                 {{ link.label }}
-              </a>
+              </RouterLink>
             </li>
           </ul>
         </div>
