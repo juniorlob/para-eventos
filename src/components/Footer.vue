@@ -1,6 +1,9 @@
 <script setup>
 import { Separator } from '@/components/ui/separator'
 import { Button } from '@/components/ui/button'
+import facebookIcon from '@/assets/facebook.svg'
+import instagramIcon from '@/assets/instagram.svg'
+import twitterIcon from '@/assets/twitter.svg'
 
 const footerSections = [
   {
@@ -35,9 +38,9 @@ const footerSections = [
 ]
 
 const socialLinks = [
-  { name: 'Facebook', icon: '/src/assets/facebook.svg', href: '#' },
-  { name: 'Instagram', icon: '/src/assets/instagram.svg', href: '#' },
-  { name: 'Twitter', icon: '/src/assets/twitter.svg', href: '#' },
+  { name: 'Facebook', icon: facebookIcon, href: '#' },
+  { name: 'Instagram', icon: instagramIcon, href: '#' },
+  { name: 'Twitter', icon: twitterIcon, href: '#' },
 ]
 </script>
 
