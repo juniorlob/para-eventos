@@ -70,6 +70,12 @@ const router = createRouter({
       component: () => import('@/views/pages/FormasPagamentoView.vue'),
       meta: { title: 'Formas de Pagamento' },
     },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'not-found',
+      component: () => import('@/views/NotFoundView.vue'),
+      meta: { title: 'Página não encontrada' },
+    },
   ],
 })
 
