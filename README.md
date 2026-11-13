@@ -15,12 +15,31 @@ Aplicação simples para consultar eventos culturais, gastronômicos, esportivos
    ```
 4. Acesse o link que aparece no terminal (geralmente http://localhost:5173)
 
+### API de eventos
+
+Os eventos vêm da API própria ([para-eventos-api](https://para-eventos-api.vercel.app)),
+um BFF em Next.js. Em desenvolvimento, suba a API em outro terminal:
+
+```bash
+cd ../para-eventos-api
+npm install
+npm run dev
+```
+
+O Vite faz proxy de `/api` para `http://localhost:3000` (configurável em
+`.env` pela variável `API_PROXY_TARGET`). Em produção, o rewrite em
+`vercel.json` encaminha `/api/*` para a API publicada, então o front continua
+usando caminhos relativos e não precisa de CORS.
+
+As requisições ficam centralizadas em `src/services/events.js`; os componentes
+visuais apenas recebem os dados via props.
+
 ## O que a aplicação faz
-- Lista eventos com foto, título, data, hora e local
-- Busca por nome do evento
-- Favoritos: marque os eventos que mais te interessam
+- Lista eventos carregados da API com foto, título, data, hora e local
+- Busca por nome do evento (ignorando acentos)
+- Favoritos: marque os eventos que mais te interessam (persistidos no navegador)
 - Filtro por tipo (Show, Teatro, Culinário, Museu, Palestras, Religioso)
-- Detalhes do evento ao clicar no card
+- Detalhes do evento ao clicar no card (buscados por id na API)
 
 ## Documento de requisitos
 O desenvolvimento seguiu o documento de requisitos do projeto:
